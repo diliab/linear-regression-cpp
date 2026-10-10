@@ -1,7 +1,6 @@
 # Linear Regression in C++
 
-A mini machine learning project using linear regression in C++. 
- The model predicts tree health based on ambient temperature, trained using gradient descent.
+A C++ machine learning mini-project that implements linear regression from scratch using gradient descent.
 
 
 ## Overview
