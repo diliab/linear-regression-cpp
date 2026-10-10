@@ -29,7 +29,7 @@ I built this project to connect concepts from computer science, calculus, statis
 - Uses gradient descent to optimize model parameters
 - Calculates Mean Squared Error
 - Uses C++ functions to separate prediction, error calculation, and training
-- Prints the learned equation after training
+- Prints the learned equation and interpretation after training
 
 ## Dataset 
 
