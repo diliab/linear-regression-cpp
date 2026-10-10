@@ -12,7 +12,7 @@ vector<double> tree_health  = {90.8, 75.0, 50.1, 95.0,  30.0, 91.2, 30.2, 60.0};
  - returns predicted health value as a double
  */
 
-//defining a predict function, will be used as a simple calculation function (will be called in training function)
+//defining a predict function, will be used as a calculation function (will be called in training function)
 //predicts the tree health value
 double predict(double temperature, double m, double b) {
     double predictedHealth = m * temperature + b;
@@ -25,7 +25,7 @@ double squaredError(double predicted, double actual) {
     return squared;
 }
 
-// defining the mean squared error function,
+// defining the mean squared error function
 double calcMSE(const vector<double>& temperatures, const vector<double>& health, double m, double b) {
     double total = 0.0;
     int n = temperatures.size();
@@ -69,8 +69,41 @@ void train(const vector<double>& temperatures,const vector<double>& health, doub
 int main() {
     double m = 0.0;
     double b = 0.0;
-    // calling the training function
-    train(temperatures, tree_health, m, b, 0.0001, 1000000);
-    //printing the final equation
-    cout << "The predicted linear regression equation is: tree_health = " << m << " * temperature + " << b << endl;
+    double learning_rate = 0.0001;
+    int epochs = 1000000;
+
+    // Train the linear regression model
+    train(temperatures, tree_health, m, b, learning_rate, epochs);
+
+
+    //printing summary of the model
+
+    cout << "Linear Regression Model: Tree Health Prediction" << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << "Training data points: " << temperatures.size() << endl;
+    cout << "Input feature: Temperature (Fahrenheit)" << endl;
+    cout << "Target value: Tree health score" << endl;
+    cout << endl;
+
+    cout << "Final model:" << endl;
+
+    cout << "tree_health = " << m << " * temperature + " << b << endl;
+    cout << endl;
+
+    cout << "Interpretation:" << endl;
+
+    if (m < 0) {
+        cout << "For each 1 degree Fahrenheit increase in temperature, "
+             << "the predicted tree health score decreases by about "
+             << -m << " points." << endl;
+    } else if (m > 0) {
+        cout << "For each 1 degree Fahrenheit increase in temperature, "
+             << "the predicted tree health score increases by about "
+             << m << " points." << endl;
+    } else {
+        cout << "Temperature has no effect on the predicted tree health score "
+             << "in this model." << endl;
+    }
+
+    return 0;
 }
